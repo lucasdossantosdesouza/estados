@@ -1,0 +1,39 @@
+<section>
+  <article>
+      <form>
+        <div class="form-group">
+              <label for="estado">Estado</label>
+              <input  type="text" [(ngModel)]="estado.nome" name="nome" class="form-control"
+              placeholder="Informe o Estado">
+              <label for="sigla">Sigla</label>
+              <input type="text"  [(ngModel)]="estado.sigla" name="sigla" class="form-control"
+              placeholder="Informe a Sigla">
+               <button (click)="salvarEstado()" class="btn btn-primary mb-2">Salvar</button>
+              <button (click)="buscarTodos()" class="btn btn-primary mb-2">Buscar All</button>
+          </div>
+      </form>
+      <div class="container">
+            <h1 class="page-header">Lista de Estados</h1>
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover table-dark" >
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Sigla</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of estados" >
+                    <td>{{ item.nome }}</td>
+                    <td>{{ item.sigla }}</td>
+                    <td> <button (click)="excluirEstado(item)" class="btn btn-primary mb-2">Excluir</button></td>
+                    <td> <button (click)="editarEstado(item)" class="btn btn-primary mb-2">Editar</button></td>
+                  </tr>
+
+                </tbody>
+              </table>
+              </div>
+              </div>
+
+ </article>
+</section>
