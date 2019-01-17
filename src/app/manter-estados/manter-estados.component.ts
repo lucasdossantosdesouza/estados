@@ -26,7 +26,7 @@ export class ManterEstadosComponent implements OnInit {
 
   salvarEstado() {
     this._estadoService.salvarEstado(this.estado).subscribe(data => this.postData = JSON.stringify(data),
-      () => this.buscarTodos(this.postData) , () => this.estado = new Estados()
+      () => this.buscarTodos(this.postData)
 
     );
   }
@@ -43,7 +43,7 @@ export class ManterEstadosComponent implements OnInit {
   buscarTodos(mensagem) {
     if ( mensagem != null) {alert(mensagem); }
     this._estadoService.buscarTodos().subscribe(ufs =>   this.estados = ufs);
-
+    this.estado = new Estados();
     /*if (this.estados.length === 0 || this.filtro === undefined
       || this.filtro.trim() === '') {
         return this.estados;

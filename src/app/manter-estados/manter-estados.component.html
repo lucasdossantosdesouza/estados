@@ -20,7 +20,7 @@
       </div>
       <div class="container">
         <h3>Pesquisar Estado</h3>
-        <input type="text" [(ngModel)]="filtro" class="form-control" (keyup)="buscarPorNome()">
+        <input type="text" [(ngModel)]="filtro" class="form-control" (keyup.enter)="buscarPorNome()">
       </div>
       <div class="container">
             <h3 class="page-header">Lista de Estados
