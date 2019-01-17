@@ -24,9 +24,8 @@ export class ManterEstadosComponent implements OnInit {
   }
 
   salvarEstado() {
-    this.postData = null;
     this._estadoService.salvarEstado(this.estado).subscribe(data => this.postData = JSON.stringify(data),
-      () => this.buscarTodos(this.postData), () => alert(this.postData)
+      () => this.buscarTodos(this.postData)
     );
   }
   editarEstado( item: Estados) {
@@ -35,13 +34,14 @@ export class ManterEstadosComponent implements OnInit {
   excluirEstado( item: Estados) {
     this.postData = null;
     this._estadoService.excluirEstado(item).subscribe((data) =>  {
-      this.buscarTodos(this.postData);
+      this.buscarTodos(JSON.stringify(data));
     }
     );
   }
   buscarTodos(mensagem) {
     if ( mensagem != null) {alert(mensagem); }
     this._estadoService.buscarTodos().subscribe(ufs =>   this.estados = ufs);
+    this.estado = new Estados();
   }
 
 }
