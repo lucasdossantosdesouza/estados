@@ -31,5 +31,9 @@ export class MaterEstadoService {
    return this.http.get(this.url + '/buscarTodos').pipe(map(res => res.json()));
  }
 
+ buscarPorNome(nome: String): Observable<Estados[]> {
+  return this.http.get(this.url + '/buscarByNome/' + nome).pipe(map(res => res.json()));
+}
+
 
 }

@@ -17,6 +17,7 @@ export class ManterEstadosComponent implements OnInit {
   estados: Estados[];
   nome: string;
   postData:  string;
+  filtro: string;
   constructor(private _estadoService: MaterEstadoService) { }
 
   ngOnInit() {
@@ -25,7 +26,8 @@ export class ManterEstadosComponent implements OnInit {
 
   salvarEstado() {
     this._estadoService.salvarEstado(this.estado).subscribe(data => this.postData = JSON.stringify(data),
-      () => this.buscarTodos(this.postData)
+      () => this.buscarTodos(this.postData) , () => this.estado = new Estados()
+
     );
   }
   editarEstado( item: Estados) {
@@ -41,7 +43,28 @@ export class ManterEstadosComponent implements OnInit {
   buscarTodos(mensagem) {
     if ( mensagem != null) {alert(mensagem); }
     this._estadoService.buscarTodos().subscribe(ufs =>   this.estados = ufs);
-    this.estado = new Estados();
+
+    /*if (this.estados.length === 0 || this.filtro === undefined
+      || this.filtro.trim() === '') {
+        return this.estados;
+      }
+      return this.estados.filter(
+         v => v.nome.toLocaleLowerCase().includes(this.filtro.toLocaleLowerCase())
+      );*/
+  }
+  buscarPorNome() {
+    if ( this.filtro == null || this.filtro === '') {
+        this.buscarTodos(null);
+    }
+     this._estadoService.buscarPorNome(this.filtro).subscribe(ufs =>   this.estados = ufs);
+
+    /*if (this.estados.length === 0 || this.filtro === undefined
+      || this.filtro.trim() === '') {
+        return this.estados;
+      }
+      return this.estados.filter(
+         v => v.nome.toLocaleLowerCase().includes(this.filtro.toLocaleLowerCase())
+      );*/
   }
 
 }

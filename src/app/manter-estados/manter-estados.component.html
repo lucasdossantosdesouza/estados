@@ -6,23 +6,28 @@
               <label for="estado" >Estado</label>
               <input  type="text" [(ngModel)]="estado.nome" name="nome" class="form-control"
               placeholder="Informe o Estado" style="width:350px;">
-         
+
               <label for="sigla" >Sigla</label>
               <input type="text"  [(ngModel)]="estado.sigla" name="sigla" class="form-control"
               placeholder="Informe a Sigla" style="width:150px">
-              
+
           </div>
           <button (click)="salvarEstado()" class="btn btn-success" style="margin:1px">Salvar</button>
           <button (click)="buscarTodos()" class="btn btn-primary">Buscar All</button>
-         
+
       </form>
-       
-      </div> 
+
+      </div>
       <div class="container">
-            <h1 class="page-header">Lista de Estados
-                
-            </h1>
+        <h3>Pesquisar Estado</h3>
+        <input type="text" [(ngModel)]="filtro" class="form-control" (keyup)="buscarPorNome()">
+      </div>
+      <div class="container">
+            <h3 class="page-header">Lista de Estados
+
+            </h3>
             <div class="table-responsive">
+
               <table class="table table-striped table-bordered table-hover table-dark" >
                 <thead>
                   <tr>
@@ -34,12 +39,12 @@
                   <tr *ngFor="let item of estados" >
                     <td >{{ item.nome }}</td>
                     <td  width="100">{{ item.sigla }}</td>
-                    <td  width="200"> 
-                        
+                    <td  width="200">
+
                       <button (click)="excluirEstado(item)" class="btn btn-danger" style="margin:1px"> Excluir</button>
-                    
+
                      <button (click)="editarEstado(item)" class="btn btn-info">Editar</button>
-                    
+
                     </td>
 
                   </tr>
