@@ -1,17 +1,21 @@
 <section>
   <article>
       <form>
-        <div class="form-group">
+          <div class="form-group">
               <label for="estado">Estado</label>
               <input  type="text" [(ngModel)]="estado.nome" name="nome" class="form-control"
-              placeholder="Informe o Estado">
+              placeholder="Informe o Estado" width="250">
               <label for="sigla">Sigla</label>
               <input type="text"  [(ngModel)]="estado.sigla" name="sigla" class="form-control"
-              placeholder="Informe a Sigla">
-               <button (click)="salvarEstado()" class="btn btn-primary mb-2">Salvar</button>
-              <button (click)="buscarTodos()" class="btn btn-primary mb-2">Buscar All</button>
+              placeholder="Informe a Sigla" width="50">
+              
           </div>
+          <button (click)="salvarEstado()" class="btn btn-success">Salvar</button>
+                
+          <button (click)="buscarTodos()" class="btn btn-primary">Buscar All</button>
       </form>
+       
+      
       <div class="container">
             <h1 class="page-header">Lista de Estados</h1>
             <div class="table-responsive">
@@ -26,8 +30,8 @@
                   <tr *ngFor="let item of estados" >
                     <td>{{ item.nome }}</td>
                     <td>{{ item.sigla }}</td>
-                    <td> <button (click)="excluirEstado(item)" class="btn btn-primary mb-2">Excluir</button></td>
-                    <td> <button (click)="editarEstado(item)" class="btn btn-primary mb-2">Editar</button></td>
+                    <td> <button (click)="excluirEstado(item)" class="btn btn-danger">Excluir</button></td>
+                    <td> <button (click)="editarEstado(item)" class="btn btn-info">Editar</button></td>
                   </tr>
 
                 </tbody>

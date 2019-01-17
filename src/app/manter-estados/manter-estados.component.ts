@@ -23,7 +23,7 @@ export class ManterEstadosComponent implements OnInit {
   }
 
   salvarEstado() {
-    this._estadoService.salvarEstado(this.estado).subscribe(estad => this.estado1 = estad);
+    this._estadoService.salvarEstado(this.estado).subscribe(estad => this.estado = estad);
   }
   editarEstado( item: Estados) {
     alert(item.nome);
