@@ -6,14 +6,30 @@
               <div class="col">
                   <label for="estado" >Estado</label>
                   <input  type="text" [(ngModel)]="estado.nome" name="nome" class="form-control"
-                  placeholder="Informe o Estado" style="width:450px;">
+                  placeholder="Informe o Estado" style="width:450px;"  #nome="ngModel" required>
+                  <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="alert alert-danger">
+
+                      <div *ngIf="nome.errors.required">
+                        Name is required.
+                      </div>
+                      <div *ngIf="nome.errors.minlength">
+                        Name must be at least 4 characters long.
+                      </div>
+                      <div *ngIf="nome.errors.forbiddenName">
+                        Name cannot be Bob.
+                      </div>
+                  </div>
+                </div>
+                  <div class="alert alert-danger" *ngIf="estado.nome==null||estado.nome==''">
+                     O estado é obrigatório
+                  </div>
               </div>
               <div class="col">
                   <label for="sigla" >Sigla</label>
                   <input type="text"  [(ngModel)]="estado.sigla" name="sigla" class="form-control"
                   placeholder="Informe a Sigla" style="width:150px">
               </div>
-            </div>
+
             <button (click)="salvarEstado()" class="btn btn-success" style="margin:2px">
                 Salvar</button>
               <button (click)="buscarTodos()" class="btn btn-primary">Buscar All</button>
