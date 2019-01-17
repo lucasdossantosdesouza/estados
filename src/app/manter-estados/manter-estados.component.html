@@ -28,10 +28,11 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let item of estados" >
-                    <td>{{ item.nome }}</td>
-                    <td>{{ item.sigla }}</td>
-                    <td> <button (click)="excluirEstado(item)" class="btn btn-danger">Excluir</button></td>
-                    <td> <button (click)="editarEstado(item)" class="btn btn-info">Editar</button></td>
+                    <td  width="250">{{ item.nome }}</td>
+                    <td  width="100">{{ item.sigla }}</td>
+                    <td  width="30"> <button (click)="excluirEstado(item)" class="btn btn-danger">Excluir
+                    </button>
+                     <button (click)="editarEstado(item)" class="btn btn-info">Editar</button></td>
                   </tr>
 
                 </tbody>

@@ -19,7 +19,7 @@ export class MaterEstadoService {
 
   salvarEstado(estado: Estados) {
       return this.http.post(this.url + '/salvar', estado )
-      .pipe( map(estad => <Estados>estado ));
+      .pipe(map(res => res.json()));
 
   }
   excluirEstado(item: Estados) {

@@ -2,7 +2,8 @@ import { Estados } from './estados';
 
 import { MaterEstadoService } from './mater-estado.service';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-manter-estados',
@@ -15,24 +16,31 @@ export class ManterEstadosComponent implements OnInit {
   estado1: Estados = new Estados();
   estados: Estados[];
   nome: string;
-
+  postData:  string;
   constructor(private _estadoService: MaterEstadoService) { }
 
   ngOnInit() {
-    this.buscarTodos();
+    this.buscarTodos(null);
   }
 
   salvarEstado() {
-    this._estadoService.salvarEstado(this.estado).subscribe(estad => this.estado = estad);
+    this.postData = null;
+    this._estadoService.salvarEstado(this.estado).subscribe(data => this.postData = JSON.stringify(data),
+      () => this.buscarTodos(this.postData), () => alert(this.postData)
+    );
   }
   editarEstado( item: Estados) {
-    alert(item.nome);
     this.estado = item;
   }
   excluirEstado( item: Estados) {
-    this._estadoService.excluirEstado(item).subscribe(estad => this.estado1 = estad);
+    this.postData = null;
+    this._estadoService.excluirEstado(item).subscribe((data) =>  {
+      this.buscarTodos(this.postData);
+    }
+    );
   }
-  buscarTodos() {
+  buscarTodos(mensagem) {
+    if ( mensagem != null) {alert(mensagem); }
     this._estadoService.buscarTodos().subscribe(ufs =>   this.estados = ufs);
   }
 
