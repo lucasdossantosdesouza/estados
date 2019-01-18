@@ -54,14 +54,10 @@ export class ManterEstadosComponent implements OnInit {
     if ( this.filtro == null || this.filtro === '') {
       this.pageEstados(0, 5);
     }
-     //this._estadoService.buscarPorNome(this.filtro).subscribe(ufs =>   this.estados = ufs);
     this.pageEstados(0, 5);
   }
  pageEstados(page, size) {
-  if ( this.filtro != null || this.filtro !== '') {
-    this.estado.nome = this.filtro;
-  }
-    this._estadoService.estadosPorPaginacao(page, size, this.estado).subscribe(res => {
+     this._estadoService.estadosPorPaginacao(page, size, this.estado).subscribe(res => {
       this.page = res;
       this.estados = this.page.content;
       this.estado = new Estados();

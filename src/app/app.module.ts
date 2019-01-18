@@ -8,7 +8,7 @@ import { ManterEstadosComponent } from './manter-estados/manter-estados.componen
 import { ManterCidadesComponent } from './manter-cidades/manter-cidades.component';
 import { _routing } from './app.routing';
 import { PaginationComponent } from './pagination/paginacao.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { PaginationComponent } from './pagination/paginacao.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    _routing
+    _routing,
+    HttpClientModule
     ],
   providers: [MaterEstadoService],
   bootstrap: [AppComponent]

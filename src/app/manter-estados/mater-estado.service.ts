@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 import { Alert } from 'selenium-webdriver';
 import { Observable } from 'rxjs';
 import { Page } from '../models/models';
+import { HttpClient } from '@angular/common/http';
+
 
 
 
@@ -14,13 +16,12 @@ import { Page } from '../models/models';
 export class MaterEstadoService {
   estados: Estados[];
   url = 'http://localhost:8080';
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
 
    }
 
-  salvarEstado(estado: Estados) {
-      return this.http.post(this.url + '/salvar', estado )
-      .pipe(map(res => res.json()));
+  salvarEstado(estado: Estados): Observable<Estados> {
+      return this.http.post<Estados>(this.url + '/salvar', estado );
 
   }
   excluirEstado(item: Estados) {
@@ -29,15 +30,15 @@ export class MaterEstadoService {
 
   }
  buscarTodos(): Observable<Estados[]> {
-   return this.http.get(this.url + '/buscarTodos').pipe(map(res => res.json()));
+   return this.http.get<Estados[]>(this.url + '/buscarTodos');
  }
  estadosPorPaginacao(page, size
   , estado: Estados): Observable<Page> {
   // tslint:disable-next-line:max-line-length
-  return this.http.get(this.url + `/buscarPorPaginacao?page=${page}&size=${size}&nome=${estado.nome}`).pipe(map(res => res.json()));
+  return this.http.get<Page>(this.url + `/buscarPorPaginacao?page=${page}&size=${size}&nome=${estado.nome}`);
 }
  buscarPorNome(nome: String): Observable<Estados[]> {
-  return this.http.get(this.url + '/buscarByNome/' + nome).pipe(map(res => res.json()));
+  return this.http.get<Estados[]>(this.url + '/buscarByNome/' + nome);
 }
 
 
