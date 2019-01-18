@@ -31,8 +31,10 @@ export class MaterEstadoService {
  buscarTodos(): Observable<Estados[]> {
    return this.http.get(this.url + '/buscarTodos').pipe(map(res => res.json()));
  }
- estadosPorPaginacao(page: number, size: number): Observable<Page> {
-  return this.http.get(this.url + `/buscarPorPaginacao?page=${page}&size=${size}`).pipe(map(res => res.json()));
+ estadosPorPaginacao(page, size
+  , estado: Estados): Observable<Page> {
+  // tslint:disable-next-line:max-line-length
+  return this.http.get(this.url + `/buscarPorPaginacao?page=${page}&size=${size}&nome=${estado.nome}`).pipe(map(res => res.json()));
 }
  buscarPorNome(nome: String): Observable<Estados[]> {
   return this.http.get(this.url + '/buscarByNome/' + nome).pipe(map(res => res.json()));
