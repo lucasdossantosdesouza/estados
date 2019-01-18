@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   <div class="pagination-container" *ngIf="page && page.totalPages > 0">
       <nav aria-label="Page navigation">
           <ul class="pagination">
-              
+
               <li class="page-item" [ngClass]="page.first ? 'disabled' : '' ">
                   <a  class="page-link" *ngIf="page.first" aria-label="Previous">
                       <span aria-hidden="true">&laquo;</span>
@@ -15,11 +15,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
                       <span aria-hidden="true">&laquo;</span>
                   </a>
               </li>
-  
+
               <li class="page-item" *ngFor="let pageAux of page.pages" [ngClass]="(pageAux == page.number) ? 'active' : ''"  [ngClass]="i == page.number ? 'active' : '' ">
                   <a class="page-link" style="cursor: pointer" (click)="changePage(pageAux)">{{pageAux+1}}</a>
               </li>
-  
+
               <li class="page-item" [ngClass]="page.last ? 'disabled' : '' ">
                   <a  class="page-link" *ngIf="page.last" aria-label="Next">
                       <span aria-hidden="true">&raquo;</span>
@@ -29,8 +29,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
                   </a>
               </li>
               <select (ngModelChange)="changePage()" [(ngModel)]="size" class="custom-select">
-                    <option value="5">5</option>
-                    <option value="10" selected>10</option>
+                    <option value="5" selected>5</option>
+                    <option value="10">10</option>
                     <option value="15">15</option>
                     <option value="20">20</option>
               </select>
@@ -41,8 +41,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls:['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit {
-    private size: number = 10;
-    private page; 
+    private size: number = 5;
+    private page;
     @Input("page") public set value(page : any){
         if(!page) return;
         this.page = page;

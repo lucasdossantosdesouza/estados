@@ -4,7 +4,7 @@ import { MaterEstadoService } from './mater-estado.service';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
-import { AbstractControlDirective } from '@angular/forms';
+import { AbstractControlDirective, Validators } from '@angular/forms';
 import { Page } from '../models/models';
 
 
@@ -26,12 +26,12 @@ export class ManterEstadosComponent implements OnInit {
   constructor(private _estadoService: MaterEstadoService) { }
 
   ngOnInit() {
-    this.pageEstados(0, 4);
+    this.pageEstados(0, 5);
   }
 
   salvarEstado() {
     this._estadoService.salvarEstado(this.estado).subscribe(data => this.postData = JSON.stringify(data),
-      () => this.pageEstados(0, 4)
+      () => this.pageEstados(0, 5)
 
     );
   }
@@ -41,7 +41,7 @@ export class ManterEstadosComponent implements OnInit {
   excluirEstado( item: Estados) {
     this.postData = null;
     this._estadoService.excluirEstado(item).subscribe((data) =>  {
-      this.pageEstados(0, 4);
+      this.pageEstados(0, 5);
     }
     );
   }
@@ -52,10 +52,10 @@ export class ManterEstadosComponent implements OnInit {
   }
   buscarPorNome() {
     if ( this.filtro == null || this.filtro === '') {
-      this.pageEstados(0, 4);
+      this.pageEstados(0, 5);
     }
      //this._estadoService.buscarPorNome(this.filtro).subscribe(ufs =>   this.estados = ufs);
-    this.pageEstados(0, 4);
+    this.pageEstados(0, 5);
   }
  pageEstados(page, size) {
   if ( this.filtro != null || this.filtro !== '') {
