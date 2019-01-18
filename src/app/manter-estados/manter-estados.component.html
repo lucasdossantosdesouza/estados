@@ -1,41 +1,52 @@
 <section>
   <article>
-      <div class="container">
+    <div class="container">
       <form>
             <div class="form-row ">
               <div class="col">
                   <label for="estado" >Estado</label>
                   <input  type="text" [(ngModel)]="estado.nome" name="nome" class="form-control"
-                  placeholder="Informe o Estado" style="width:450px;"  #nome="ngModel" required>
+                  placeholder="Informe o Estado" style="width:450px;"  #nome="ngModel" required minlength="4">
                   <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="alert alert-danger">
-
                       <div *ngIf="nome.errors.required">
-                        Name is required.
+                        O estado é Obrigatório
                       </div>
                       <div *ngIf="nome.errors.minlength">
-                        Name must be at least 4 characters long.
+                       O estado deve ter no mínimo 4 caractéres
                       </div>
-                      <div *ngIf="nome.errors.forbiddenName">
+                      <!--<div *ngIf="nome.errors.forbiddenName">
                         Name cannot be Bob.
-                      </div>
+                      </div>-->
                   </div>
-                </div>
-                  <div class="alert alert-danger" *ngIf="estado.nome==null||estado.nome==''">
-                     O estado é obrigatório
-                  </div>
+                
+                  
               </div>
               <div class="col">
                   <label for="sigla" >Sigla</label>
                   <input type="text"  [(ngModel)]="estado.sigla" name="sigla" class="form-control"
-                  placeholder="Informe a Sigla" style="width:150px">
+                  placeholder="Informe a Sigla" style="width:150px" #sigla=ngModel required minlength="2">
+
+                  <div *ngIf="sigla.invalid && (sigla.dirty || sigla.touched)" class="alert alert-danger">
+                    <div *ngIf="sigla.errors.required">
+                      A sigla é Obrigatória
+                    </div>
+                    <div *ngIf="sigla.errors.minlength">
+                     A sigla deve ter no mínimo 2 caractéres
+                    </div>
+                    <!--<div *ngIf="nome.errors.forbiddenName">
+                      Name cannot be Bob.
+                    </div>-->
+                </div>
+              
               </div>
-
+              
+            </div>
             <button (click)="salvarEstado()" class="btn btn-success" style="margin:2px">
-                Salvar</button>
-              <button (click)="buscarTodos()" class="btn btn-primary">Buscar All</button>
+              Salvar</button>
+            <button (click)="buscarTodos()" class="btn btn-primary">Buscar All</button>
       </form>
-      </div>
-
+     
+    </div>
       <div class="container">
         <h3>Pesquisar Estado</h3>
         <input type="text" [(ngModel)]="filtro" class="form-control" (keyup)="buscarPorNome()">
@@ -69,6 +80,7 @@
 
                 </tbody>
               </table>
+              <pagination [page]="page" (paginationEvent)=changePage($event)></pagination>
               </div>
               </div>
 

@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { ManterEstadosComponent } from './manter-estados/manter-estados.component';
 import { ManterCidadesComponent } from './manter-cidades/manter-cidades.component';
 import { _routing } from './app.routing';
+import { PaginationComponent } from './pagination/paginacao.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ManterEstadosComponent,
-    ManterCidadesComponent
+    ManterCidadesComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

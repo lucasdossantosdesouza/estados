@@ -1,9 +1,10 @@
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Estados } from './estados';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Alert } from 'selenium-webdriver';
 import { Observable } from 'rxjs';
+import { Page } from '../models/models';
 
 
 
@@ -30,7 +31,9 @@ export class MaterEstadoService {
  buscarTodos(): Observable<Estados[]> {
    return this.http.get(this.url + '/buscarTodos').pipe(map(res => res.json()));
  }
-
+ estadosPorPaginacao(page: number, size: number): Observable<Page> {
+  return this.http.get(this.url + `/buscarPorPaginacao?page=${page}&size=${size}`).pipe(map(res => res.json()));
+}
  buscarPorNome(nome: String): Observable<Estados[]> {
   return this.http.get(this.url + '/buscarByNome/' + nome).pipe(map(res => res.json()));
 }
