@@ -15,30 +15,30 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MaterEstadoService {
   estados: Estados[];
-  url = 'http://localhost:8080';
+  url = 'http://localhost:8080/estados';
   constructor(private http: HttpClient) {
 
    }
 
   salvarEstado(estado: Estados): Observable<Estados> {
-      return this.http.post<Estados>(this.url + '/salvar', estado );
+      return this.http.post<Estados>(this.url, estado );
 
   }
   excluirEstado(item: Estados) {
-    return this.http.delete(this.url + '/excluir/' + item.id )
+    return this.http.delete(this.url + '/' + item.id )
     .pipe( map(esta => <Estados>item ));
 
   }
  buscarTodos(): Observable<Estados[]> {
-   return this.http.get<Estados[]>(this.url + '/buscarTodos');
+   return this.http.get<Estados[]>(this.url);
  }
  estadosPorPaginacao(page, size
   , estado: Estados): Observable<Page> {
   // tslint:disable-next-line:max-line-length
-  return this.http.get<Page>(this.url + `/buscarPorPaginacao?page=${page}&size=${size}&nome=${estado.nome}`);
+  return this.http.get<Page>(this.url + `?page=${page}&size=${size}&nome=${estado.nome}`);
 }
  buscarPorNome(nome: String): Observable<Estados[]> {
-  return this.http.get<Estados[]>(this.url + '/buscarByNome/' + nome);
+  return this.http.get<Estados[]>(this.url + '/' + nome);
 }
 
 

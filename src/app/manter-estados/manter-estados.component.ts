@@ -40,9 +40,8 @@ export class ManterEstadosComponent implements OnInit {
   }
   excluirEstado( item: Estados) {
     this.postData = null;
-    this._estadoService.excluirEstado(item).subscribe((data) =>  {
-      this.pageEstados(0, 5);
-    }
+    this._estadoService.excluirEstado(item).subscribe(data => this.postData = JSON.stringify(data),
+      () => this.pageEstados(0, 5)
     );
   }
   buscarTodos(mensagem) {
