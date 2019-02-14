@@ -22,7 +22,6 @@ export class MaterEstadoService {
 
   salvarEstado(estado: Estados): Observable<Estados> {
       return this.http.post<Estados>(this.url, estado );
-
   }
   excluirEstado(item: Estados) {
     return this.http.delete(this.url + '/' + item.id )

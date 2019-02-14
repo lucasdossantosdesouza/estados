@@ -52,6 +52,8 @@ export class ManterEstadosComponent implements OnInit {
   buscarPorNome() {
     if ( this.filtro == null || this.filtro === '') {
       this.pageEstados(0, 5);
+    } else {
+      this.estado.nome = this.filtro;
     }
     this.pageEstados(0, 5);
   }
